@@ -2,12 +2,12 @@
 
 class Database{
     
-    public function Conectar(){
+    public static function Conectar(){
         $conexion=new mysqli(
             "localhost",
             "root",
             "",
-            "bd"
+            "maracumango"
 
         );
         if($conexion->connect_errno){
