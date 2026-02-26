@@ -6,7 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="principal.php?action=crear">Crear</a>
+   
+   
+     <a href="principal.php?controller=usuarios&action=crear">Crear</a>
+    <a href="principal.php?controller=login&action=logut">Cerrar sesion</a>
+     <?=$_SESSION['user'] ?>
+    <?=$_SESSION['rol'] ?>
     <table>
         <thead>
             <th>usuario</th>
@@ -24,8 +29,8 @@
         <td><?= $u ['estado']?></td>
         <td><?= $u ['fecha_creacion']?></td> 
         <td>
-            <a href="principal.php?action=editar&id=<?=$u['id_usuario']?>">editar</a>
-            <a href="principal.php?action=eliminar&id=<?=$u['id_usuario']?>">eliminar</a>
+            <a href="principal.php?controller=usuarios&action=editar&id=<?=$u['id_usuario']?>">editar</a>
+            <a href="principal.php?controller=usuarios&action=eliminar&id=<?=$u['id_usuario']?>">eliminar</a>
         </td>
     </tr>
     <?php endforeach ?>

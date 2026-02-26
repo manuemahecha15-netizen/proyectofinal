@@ -9,6 +9,7 @@ class usuarios{
     }
 
     public function mostrar(){
+           // Método para mostrar todos los usuarios
         $sql="SELECT* FROM usuarios";
 
      $resul=$this->db->query($sql);
@@ -19,13 +20,15 @@ class usuarios{
     }
 
       public function save($usuario,$contraseña,$id_rol,$estado,$fecha_creacion){
+         // Método para insertar un nuevo usuario
          $sql="INSERT INTO usuarios (usuario,contraseña,id_rol,estado,fecha_creacion) VALUES('$usuario','$contraseña','$id_rol','$estado','$fecha_creacion')";
 
        return $this->db->query($sql);
     
       }
 
-         public function GetById($id){
+         public function GetById($id){         // Método para obtener un usuario por su ID
+
         $sql="SELECT* FROM usuarios WHERE id_usuario=$id";
         
         $resul=$this->db->query($sql);

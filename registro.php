@@ -1,29 +1,3 @@
-<?php
-include("../config/db.php");
-
-
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $nombre = $_POST["nombre"];
-    $apellido = $_POST["apellido"];
-    $correo = $_POST["correo"];
-    $usuario = $_POST["usuario"];
-    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-
-    $sql = "INSERT INTO usuarios (nombre,apellido,usuario,correo, password)
-            VALUES ('$nombre', '$apellido', '$correo' '$usuario', '$password')";
-
-            if($sql->execute()){
-                $mensaje = "registro exitoso";
-            }
-            else {
-                $mensaje = "error al registrar";
-            }
-
-   
-}
-?>
 
 <!DOCTYPE html>
 <html>
@@ -78,7 +52,7 @@ button{
 <button type="submit">Registrarse</button>
 </form>
 
-<a href="login.php">Ir a Login</a>
+<a href="Views/Auth/login.php">Ir a Login</a>
 </div>
 
 </body>
