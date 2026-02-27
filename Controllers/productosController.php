@@ -9,7 +9,7 @@ class productosController{
 public function index(){  // Método que muestra la lista de productos
     $productos=new productos();         // Se crea un objeto del modelo usuarios
 
-    $datos=$productos->mostrar();  // Se llama al método mostrar() del modelo
+    $dato=$productos->mostrar();  // Se llama al método mostrar() del modelo
         // Trae todos los productos de la base de datos
 
     require_once __DIR__."/../Views/productos/listar.php";  // Se carga la vista listar.php para mostrar los datos
@@ -18,7 +18,7 @@ public function index(){  // Método que muestra la lista de productos
 public function crear(){ // Método para crear un nuevo producto
     if($_POST){            // Verifica si se enviaron datos desde un formulario
         $productos=new productos();
-        $u=$productos->save(
+        $p=$productos->save(
             $_POST['id_producto'],
             $_POST['nombre'],
             $_POST['descripcion'],
@@ -39,7 +39,7 @@ public function editar(){
     if($_POST){
 
 
-    $u=$productos->update(
+    $p=$productos->update(
         $_POST['id_producto'],
         $_POST['nombre'],
         $_POST['descripcion'],
@@ -53,7 +53,7 @@ public function editar(){
     header("Location: principal.php"); // Redirige después de actualizar
 
     }
-    $datos=$usuarios->GetById($_GET['id']); // Obtiene los datos del producto por ID para mostrarlos en el formulario
+    $productos=$usuarios->GetById($_GET['id']); // Obtiene los datos del producto por ID para mostrarlos en el formulario
     require_once __DIR__. "/../views/productos/editar.php";   // Carga la vista para editar producto
 
 
@@ -61,7 +61,7 @@ public function editar(){
 
 public function eliminar(){
     $productos=new productos();
-    $u=$productos->delete($_GET['id']);
+    $p=$productos->delete($_GET['id']);
     header("Location: principal.php");
 }
 }
