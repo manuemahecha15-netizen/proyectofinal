@@ -1,6 +1,6 @@
 <?php
 /** llamando archivo AUTH */
-require_once _DIR_."/../models/Auth.php";  
+require_once __DIR__."/../models/Auth.php";  
 
 class AuthController{
 
@@ -24,19 +24,18 @@ public function login(){
                 echo "no se encontro el usuario";
             }
         }
-        require_once _DIR_."/../views/Auth/login.php";
+        require_once __DIR__."/../views/Auth/login.php";
     }
 
     /** se crea funcion para cerrar sesion */
     public function logout(){
-        session_start();
         session_destroy();
-        header("Location: login.php");
+        header("Location: principal.php");
     }
 
     /** se crea funcion para crear el panel de administrador */
     public function admin(){
-                require_once _DIR_."/../views/admin/admin.php";
+                require_once __DIR__."/../views/admin/admin.php";
 
 
     }

@@ -43,7 +43,7 @@ button{
 <div class="form">
 <h2>Login</h2>
 
-<form method="POST">
+<form action="" method="POST">
 <input type="text" name="usuario" placeholder="Usuario" required>
 <input type="password" name="contraseña" placeholder="Contraseña" required>
 <button type="submit">Ingresar</button>

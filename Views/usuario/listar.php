@@ -9,7 +9,7 @@
    
    
      <a href="principal.php?controller=usuarios&action=crear">Crear</a>
-    <a href="principal.php?controller=login&action=logut">Cerrar sesion</a>
+    <a href="principal.php?controller=login&action=logout">Cerrar sesion</a>
      <?=$_SESSION['user'] ?>
     <?=$_SESSION['rol'] ?>
     <table>
