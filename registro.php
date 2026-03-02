@@ -3,40 +3,7 @@
 <html>
 <head>
 <title>Registro</title>
-
-<style>
-body{
-    font-family: Arial;
-    background: #ff7e5f;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-}
-
-.form{
-    background:white;
-    padding:30px;
-    border-radius:10px;
-    width:300px;
-}
-
-input{
-    width:100%;
-    padding:8px;
-    margin:10px 0;
-}
-
-button{
-    width:100%;
-    padding:10px;
-    background:#ff7e5f;
-    color:white;
-    border:none;
-    cursor:pointer;
-}
-</style>
-
+<link rel="stylesheet" href="public/css/registro.css">
 </head>
 <body>
 
