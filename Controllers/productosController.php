@@ -9,10 +9,10 @@ class productosController{
 public function index(){  // Método que muestra la lista de productos
     $productos=new productos();         // Se crea un objeto del modelo usuarios
 
-    $dato=$productos->mostrar();  // Se llama al método mostrar() del modelo
+    $datos=$productos->mostrar();  // Se llama al método mostrar() del modelo
         // Trae todos los productos de la base de datos
-
-    require_once __DIR__."/../Views/productos/listar.php";  // Se carga la vista listar.php para mostrar los datos
+     
+    require_once __DIR__."/../Views/productos/listarproducto.php";  // Se carga la vista listar.php para mostrar los datos
 
 }
 public function crear(){ // Método para crear un nuevo producto

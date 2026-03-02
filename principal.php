@@ -3,6 +3,7 @@ session_start();
 
 require_once "controllers/UsuariosController.php";
 require_once "controllers/Authcontroller.php";
+require_once "controllers/productoscontroller.php";
 
 $controller=$_GET['controller'] ?? null;
 $action=$_GET['action'] ?? null; // Se obtiene la acción desde la URL (si existe)
@@ -17,10 +18,13 @@ else{
 
 }
 
-
 switch($controller){
   case 'usuarios':
     $controller=new UsuariosController();
+   break;
+
+   case 'productos':
+    $controller=new productosController();
    break;
 
     case 'login':

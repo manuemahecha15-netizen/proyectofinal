@@ -1,3 +1,14 @@
+<?php
+
+
+ // Si NO hay usuario en sesión (no ha iniciado sesión)
+
+if($_SESSION['rol']!='admin'){
+   header("Location: principal.php?controller=usuario&&action=index"); 
+}
+ 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +34,7 @@
 </thead>
 <tbody>
     <?php if(!empty($datos)):?>
-    <?php foreach($dato as $p): ?>
+    <?php foreach($datos as $p): ?>
     <tr>
         <td><?= $p ['id_producto']?></td>
         <td><?= $p ['nombre']?></td>
