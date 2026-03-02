@@ -20,6 +20,12 @@ class usuarios{
     }
 
       public function save($usuario,$contraseña,$id_rol,$estado,$fecha_creacion){
+      $errores=[];
+
+      if(strlen($usuario)<=5){
+         $errores[]= "el usuario debe de tener mas de 6 caracteres";
+         
+      }
          // Método para insertar un nuevo usuario
          $sql="INSERT INTO usuarios (usuario,contraseña,id_rol,estado,fecha_creacion) VALUES('$usuario','$contraseña','$id_rol','$estado','$fecha_creacion')";
 

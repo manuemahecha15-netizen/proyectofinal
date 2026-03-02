@@ -16,7 +16,8 @@ public function index(){  // Método que muestra la lista de usuarios
 
 }
 public function crear(){ // Método para crear un nuevo usuario
-    if($_POST){            // Verifica si se enviaron datos desde un formulario
+    if($_POST){  
+        $errores=[];
         $usuarios=new usuarios();
         $u=$usuarios->save(
             $_POST['usuario'],
@@ -25,6 +26,13 @@ public function crear(){ // Método para crear un nuevo usuario
             $_POST['estado'],
             $_POST['fecha_creacion'],
     );
+
+    if(is_array($c)){
+        $erros=array_marge($errores,$C);
+        require_once __DIR__."/../views/Usuarios/crear.php";
+        return;
+        
+    }
     header("Location: principal.php");
 
     }

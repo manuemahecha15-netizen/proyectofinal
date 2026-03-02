@@ -8,7 +8,7 @@
 <body>
    
    
-     <a href="../../principal.php?controller=productos&action=crear">Crear</a>
+     <a href="../../principal.php?controller=productos&action=crearproducto">Crear</a>
     <a href="principal.php?controller=login&action=logout">Cerrar sesion</a>
     <table>
         <thead>

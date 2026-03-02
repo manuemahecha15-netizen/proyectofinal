@@ -30,7 +30,7 @@ public function crear(){ // Método para crear un nuevo producto
     header("Location: principal.php");
 
     }
-     require_once __DIR__."/../Views/producto/crear.php";
+     require_once __DIR__."/../Views/productos/crearproducto.php";
 }
 
 
