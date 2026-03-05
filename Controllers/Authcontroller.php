@@ -8,7 +8,7 @@ class AuthController{
 public function login(){
         if($_POST){
             $model = new Auth();
-            $login = $model->login($_POST['usuario'],$_POST['contraseña']);
+            $login = $model->login($_POST['usuario'],$_POST['password']);
            
             /** se crea un "si" para identificar el rol del usuario al iniciar sesion */
             if($login){
