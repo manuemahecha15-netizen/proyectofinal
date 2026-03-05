@@ -18,9 +18,7 @@
 
 <button type="submit">Registrarse</button>
 
-<button type="button" onclick="window.location.href='views/Auth/login.php'">
-Ir a Login
-</button>
+
 
 </form>
 </form>

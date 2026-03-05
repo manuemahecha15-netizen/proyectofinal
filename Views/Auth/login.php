@@ -45,7 +45,7 @@ button{
 
 <form action="" method="POST">
 <input type="text" name="usuario" placeholder="Usuario" required>
-<input type="password" name="contraseña" placeholder="Contraseña" required>
+<input type="password" name="password" placeholder="Contraseña" required>
 
 <button type="submit">Ingresar</button>
 </form>

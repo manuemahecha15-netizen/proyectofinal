@@ -31,6 +31,7 @@ class Auth{   // Esta clase se encarga de la autenticación (inicio de sesión)
       $errores=[];
        $id_rol='3';
        $estado='activo';
+       $fecha_creacion='2026-03-05 10:57:28';
       if(strlen($usuario)<=5){
          $errores[]= "el usuario debe de tener mas de 6 caracteres";
          

@@ -8,7 +8,7 @@ class AuthController{
 public function login(){
         if($_POST){
             $model = new Auth();
-            $login = $model->login($_POST['usuario'],$_POST['contraseña']);
+            $login = $model->login($_POST['usuario'],$_POST['password']);
            
             /** se crea un "si" para identificar el rol del usuario al iniciar sesion */
             if($login){
@@ -45,25 +45,26 @@ public function login(){
 
 
     public function guardar(){ // Método para crear un nuevo usuario
+    session_destroy();
     if($_POST){  
         $errores=[];
         $usuarios=new Auth();
         $u=$usuarios->save(
             $_POST['usuario'],
-            $_POST['contraseña'],
-            $_POST['password']
-            
+             $_POST['password'],
+            $_POST['correo']
+                     
     );
-
+    header("Location: principal.php");
     // if(is_array($c)){
     //     $erros=array_marge($errores,$C);
     //     require_once __DIR__."/../views/Usuarios/crear.php";
     //     return;
         
     // }
-    
+      
     }
-     require_once __DIR__."/../Views/Auth/login.php";
+      header("Location: principal.php");
 }
 
 }
