@@ -8,12 +8,12 @@
 
 <div class="form">
 <h2>Registro</h2>
-<form method="POST" action="../../principal.php?controller=auth&action=guardar">
+<form method="POST" action="principal.php?controller=login&action=guardar">
 
-<input type="text" name="nombre" placeholder="Nombre" required>
-<input type="text" name="apellido" placeholder="Apellido" required>
+<input type="text" name="usuario" placeholder="Nombre" required>
+
 <input type="email" name="correo" placeholder="Correo" required>
-<input type="text" name="usuario" placeholder="Usuario" required>
+
 <input type="password" name="password" placeholder="Contraseña" required>
 
 <button type="submit">Registrarse</button>

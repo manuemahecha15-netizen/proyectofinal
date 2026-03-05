@@ -27,6 +27,20 @@ class Auth{   // Esta clase se encarga de la autenticación (inicio de sesión)
 
 }
 
+    public function save($usuario,$contraseña,$correo){
+      $errores=[];
+       $id_rol='3';
+       $estado='activo';
+      if(strlen($usuario)<=5){
+         $errores[]= "el usuario debe de tener mas de 6 caracteres";
+         
+      }
+         // Método para insertar un nuevo usuario
+         $sql="INSERT INTO usuarios (usuario,contraseña,id_rol,estado,fecha_creacion,correo) VALUES('$usuario','$contraseña','$id_rol','$estado','$fecha_creacion','$correo')";
+
+       return $this->db->query($sql);
+    
+      }
 
 
 }

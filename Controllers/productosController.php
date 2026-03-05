@@ -33,6 +33,9 @@ public function crear(){ // Método para crear un nuevo producto
      require_once __DIR__."/../Views/productos/crearproducto.php";
 }
 
+public function listarproducto(){
+    require_once "views/productos/listarproducto.php";
+}
 
 public function editar(){
     $productos=new productos();
