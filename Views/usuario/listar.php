@@ -1,3 +1,11 @@
+<?php
+
+if($_SESSION['rol']!='admin'){
+ header("Location: principal.php?controller=login&action=login");
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

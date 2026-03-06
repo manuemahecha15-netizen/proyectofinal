@@ -4,13 +4,17 @@ session_start();
 require_once "controllers/UsuariosController.php";
 require_once "controllers/Authcontroller.php";
 require_once "controllers/productoscontroller.php";
+require_once "controllers/ventasController.php";
 
 $controller=$_GET['controller'] ?? null;
 $action=$_GET['action'] ?? null; // Se obtiene la acción desde la URL (si existe)
 
-if(!isset($_SESSION['user'])){  // Si NO hay usuario en sesión (no ha iniciado sesión)
-  $controller='login';
-  $action='login';
+if(!isset($_SESSION['user'])){
+    
+    if($controller != 'login'){
+        $controller='login';
+        $action='login';
+    }
 }
 else{
   $controller=$controller ?? 'usuarios';   // Si no se especifica controlador, por defecto será "usuarios"
@@ -30,7 +34,8 @@ switch($controller){
     case 'login':
     $controller=new AuthController();
    break;
-   
+   case 'ventas':
+    $controller=new ventasController();
    break;
    default:
      $controller=new UsuariosController();

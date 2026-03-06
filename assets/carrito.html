@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Carrito - Maracumango</title>
+<link rel="stylesheet" href="css/productos.css">
+
+<style>
+
+body{
+    font-family: Arial;
+}
+
+.tabla-carrito{
+    width: 70%;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+.tabla-carrito th, .tabla-carrito td{
+    border:1px solid #ccc;
+    padding:10px;
+    text-align:center;
+}
+
+.total{
+    text-align:center;
+    font-size:22px;
+    margin-top:20px;
+}
+
+.btn{
+    padding:8px 15px;
+    background:#2ecc71;
+    border:none;
+    color:white;
+    cursor:pointer;
+}
+
+.btn-eliminar{
+    background:red;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+<ul>
+<li><a href="../principal.php?controller=productos&action=index">Nuestros Productos</a></li>
+<li><a href="metododepago.html">Método de Pago</a></li>
+<li><a href="carrito.html">Carrito</a></li>
+<li><a href="factura.html">Factura</a></li>
+<li><a href="../principal.php?controller=login&action=logout">Cerrar Sesion</a></li>
+</ul>
+</nav>
+
+<h1 style="text-align:center;">Carrito de Compras</h1>
+
+<table class="tabla-carrito">
+
+<thead>
+<tr>
+<th>Producto</th>
+<th>Precio</th>
+<th>Acción</th>
+</tr>
+</thead>
+
+<tbody id="listaCarrito">
+</tbody>
+
+</table>
+
+<div class="total">
+Total: $<span id="total">0</span>
+</div>
+
+<div style="text-align:center; margin-top:20px;">
+<button class="btn" onclick="vaciarCarrito()">Vaciar carrito</button>
+<button class="btn-venta" onclick="agregarVenta()">Enviar Venta</button>
+</div>
+
+<script>
+
+function mostrarCarrito(){
+
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+let tabla = document.getElementById("listaCarrito");
+
+tabla.innerHTML="";
+
+let total=0;
+
+carrito.forEach((producto,index)=>{
+
+total += producto.precio;
+
+tabla.innerHTML += `
+<tr>
+<td>${producto.id}</td>    
+<td>${producto.nombre}</td>
+<td>$${producto.precio}</td>
+<td>
+<button class="btn-eliminar" onclick="eliminarProducto(${index})">
+Eliminar
+</button>
+
+</td>
+</tr>
+`;
+
+});
+
+document.getElementById("total").innerText = total;
+
+}
+
+function eliminarProducto(index){
+
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+carrito.splice(index,1);
+
+localStorage.setItem("carrito",JSON.stringify(carrito));
+
+mostrarCarrito();
+
+}
+
+function vaciarCarrito(){
+
+localStorage.removeItem("carrito");
+
+mostrarCarrito();
+
+}
+
+function agregarVenta(){
+
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+let total = 0;
+
+carrito.forEach(p=>{
+    total += p.precio;
+});
+
+let form = new FormData();
+
+//form.append("id_usuario",1);
+form.append("total",total);
+form.append("metodo_pago","efectivo");
+form.append("id_usuario",carrito[0].id_usuario);
+form.append("carrito",JSON.stringify(carrito));
+
+fetch("../principal.php?controller=ventas&action=guardar",{
+    method:"POST",
+    body:form
+})
+.then(res=>res.text())
+.then(res=>{
+    console.log(res);
+    vaciarCarrito();
+});
+}
+
+mostrarCarrito();
+
+</script>
+
+</body>
+</html>

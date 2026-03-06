@@ -17,9 +17,20 @@ public function index(){  // Método que muestra la lista de productos
 }
 public function crear(){ // Método para crear un nuevo producto
     if($_POST){            // Verifica si se enviaron datos desde un formulario
+         // Tomar imagen
+        $imagen = $_FILES['imagen']['name'];
+        $tmp = $_FILES['imagen']['tmp_name'];
+
+        // Ruta donde se guardará
+        $ruta = "assets/img/".$imagen;
+
+        // Mover archivo
+        move_uploaded_file($tmp,$ruta);
+   
+        
         $productos=new productos();
         $p=$productos->save(
-            $_POST['id_producto'],
+            $ruta,
             $_POST['nombre'],
             $_POST['descripcion'],
             $_POST['precio'],
@@ -27,7 +38,7 @@ public function crear(){ // Método para crear un nuevo producto
             $_POST['id_categoria'],
             $_POST['estado'],
     );
-    header("Location: principal.php");
+    header("Location: principal.php?controller=productos&action=index");
 
     }
      require_once __DIR__."/../Views/productos/crearproducto.php";

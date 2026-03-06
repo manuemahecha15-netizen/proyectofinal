@@ -7,7 +7,7 @@ class Database{
             "localhost",  // Servidor donde está la base de datos
             "root", // usuario de la base de datos
             "",
-            "maracumango"
+            "maracumango2"
 
         );
         //se verifica si ocurrio un error en la conexion

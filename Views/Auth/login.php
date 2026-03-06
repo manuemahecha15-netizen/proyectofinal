@@ -46,7 +46,7 @@ button{
 <form action="" method="POST">
 <input type="text" name="usuario" placeholder="Usuario" required>
 <input type="password" name="password" placeholder="Contraseña" required>
-
+<a href="views/auth/registro.php">Registrarse</a>
 <button type="submit">Ingresar</button>
 </form>
 

@@ -12,6 +12,7 @@ public function login(){
            
             /** se crea un "si" para identificar el rol del usuario al iniciar sesion */
             if($login){
+                $_SESSION['id_user']=$login['id_usuario'];
                 $_SESSION['user']=$login['usuario'];
                 $_SESSION['rol']=$login['nombre_rol'];
                 if($_SESSION['rol']=='admin'){
@@ -45,7 +46,7 @@ public function login(){
 
 
     public function guardar(){ // Método para crear un nuevo usuario
-    session_destroy();
+    
     if($_POST){  
         $errores=[];
         $usuarios=new Auth();
@@ -64,7 +65,7 @@ public function login(){
     // }
       
     }
-      header("Location: principal.php");
+    require_once __DIR__."/../views/auth/registro.php";
 }
 
 }

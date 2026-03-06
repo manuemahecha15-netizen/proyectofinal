@@ -19,9 +19,9 @@ class productos{
 
     }
 
-      public function save($id_producto,$nombre,$descripcion,$precio,$stock,$id_categoria,$estado){
+      public function save($Ruta_Imagen,$nombre,$descripcion,$precio,$stock,$id_categoria,$estado){
          // Método para insertar un nuevo producto
-         $sql="INSERT INTO  (id_producto,nombre,descripcion,precio,stock,id_categoria,estado) VALUES('$id_categoria','$nombre','$descripcion','$precio','$stock','$id_categoria','$estado')";
+         $sql="INSERT INTO productos (Ruta_Imagen,nombre,descripcion,precio,stock,id_categoria,estado) VALUES('$Ruta_Imagen','$nombre','$descripcion','$precio','$stock','$id_categoria','$estado')";
 
        return $this->db->query($sql);
     
