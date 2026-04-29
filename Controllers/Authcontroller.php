@@ -1,72 +1,69 @@
 <?php
-/** llamando archivo AUTH */
-require_once __DIR__."/../models/Auth.php";  
+require_once __DIR__."/../models/Auth.php";
 
-class AuthController{
+class AuthController {
 
-/** se crea la funcion login */
-public function login(){
-        if($_POST){
-            $model = new Auth();
-            $login = $model->login($_POST['usuario'],$_POST['password']);
-           
-            /** se crea un "si" para identificar el rol del usuario al iniciar sesion */
-            if($login){
-                $_SESSION['id_user']=$login['id_usuario'];
-                $_SESSION['user']=$login['usuario'];
-                $_SESSION['rol']=$login['nombre_rol'];
-                if($_SESSION['rol']=='admin'){
-                    header("location:principal.php?controller=login&action=admin");
-                }elseif($_SESSION['rol']=='Cliente'){
-                 header("location:principal.php?controller=productos&action=index");
+    public function login() {
+
+        if ($_POST) {
+            $auth = new Auth();
+            $login = $auth->login($_POST['usuario'], $_POST['password']);
+
+            if ($login) {
+                $_SESSION['user'] = $login['usuario'];
+                $_SESSION['rol'] = $login['nombre_rol'];
+
+                if ($_SESSION['rol'] == 'Administrador') {
+                    header("Location: admin_dashboard.php");
+                } else {
+                    header("Location: cliente_dashboard.php");
                 }
-                else{
-             header("Location: principal.php?controller=usuario&action=index");
-                }
-            }
-            else{
-                echo "no se encontro el usuario";
+                exit();
+            } else {
+                header("Location: principal.php?controller=login&action=login&error=1");
+                exit();
             }
         }
-        require_once __DIR__."/../views/Auth/login.php";
+
+        require_once __DIR__."/../views/auth/login.php";
     }
 
-    /** se crea funcion para cerrar sesion */
-    public function logout(){
+    public function registro() {
+        require_once __DIR__."/../views/auth/registro.php";
+    }
+
+    public function guardar() {
+
+        if ($_POST) {
+            $auth = new Auth();
+
+            if ($auth->checkUsuario($_POST['usuario'])) {
+                header("Location: principal.php?controller=login&action=registro&error=usuario_existente");
+                exit();
+            }
+
+            if ($auth->checkCorreo($_POST['correo'])) {
+                header("Location: principal.php?controller=login&action=registro&error=correo_existente");
+                exit();
+            }
+
+            $auth->save(
+                $_POST['usuario'],
+                $_POST['password'],
+                $_POST['correo'],
+                $_POST['rol']
+            );
+
+            header("Location: principal.php?controller=login&action=login&success=1");
+            exit();
+        }
+
+        header("Location: principal.php?controller=login&action=registro");
+    }
+
+    public function logout() {
         session_destroy();
-        header("Location: principal.php");
+        header("Location: principal.php?controller=login&action=login");
+        exit();
     }
-
-    /** se crea funcion para crear el panel de administrador */
-    public function admin(){
-                require_once __DIR__."/../views/admin/admin.php";
-
-
-    }
-
-
-    public function guardar(){ // Método para crear un nuevo usuario
-    
-    if($_POST){  
-        $errores=[];
-        $usuarios=new Auth();
-        $u=$usuarios->save(
-            $_POST['usuario'],
-             $_POST['password'],
-            $_POST['correo']
-                     
-    );
-    header("Location: principal.php");
-    // if(is_array($c)){
-    //     $erros=array_marge($errores,$C);
-    //     require_once __DIR__."/../views/Usuarios/crear.php";
-    //     return;
-        
-    // }
-      
-    }
-    require_once __DIR__."/../views/auth/registro.php";
 }
-
-}
-?>
